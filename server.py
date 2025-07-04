@@ -30,7 +30,7 @@ from functools import wraps
 app = Flask(__name__)
 app.secret_key = 'your-secret-key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
-# app.secret_key = 'Your_random_key'
+app.secret_key = os.getenv("secret_key")
 app.config['UPLOAD_FOLDER'] = os.path.realpath('.') +'/static/uploads'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 # app.config['WTF_CSRF_SECRET_KEY'] = 'random key for form'
