@@ -1,0 +1,51 @@
+<!-- cart.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Cart - Peks Collections</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-red-80">
+  <nav class="bg-yellow shadow p-4 flex justify-between items-center">
+    <a href="{{ url_for('homepage') }}" class="text-purple-600 font-bold">← Back to Shop</a>
+    <h2 class="text-2xl font-bold text-purple-600">Your Cart</h2>
+  </nav>
+
+  <section class="py-10 px-4 max-w-4xl mx-auto">
+    {% if cart_items %}
+    <table class="w-full text-left bg-yellow shadow rounded overflow-hidden">
+      <thead class="bg-purple-100">
+        <tr>
+          <th class="p-4">Item</th>
+          <th>Qty</th>
+          <th>Subtotal</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in cart_items %}
+        <tr class="border-b">
+          <td class="p-4 font-semibold">{{ item.product.name }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>${{ '%.2f' % item.subtotal }}</td>
+          <td>
+            <a href="{{ url_for('remove_from_cart', product_id=item.product.id) }}"
+               class="text-red-500 hover:underline">Remove</a>
+          </td>
+        </tr>
+        {% endfor %}
+        <tr class="font-bold bg-purple-50">
+          <td class="p-4">Total</td>
+          <td></td>
+          <td>${{ '%.2f' % total }}</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    {% else %}
+    <p class="text-center text-gray-600 text-lg">Your cart is empty.</p>
+    {% endif %}
+  </section>
+</body>
+</html>
