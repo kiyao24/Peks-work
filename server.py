@@ -25,7 +25,10 @@ from functools import wraps
 # from flask_admin.contrib.sqla import ModelView
 # from flask_admin.form import rules
 # from flask_babel import Babel, get_locale, lazy_gettext as _
+from dotenv import load_dotenv
 
+
+load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = 'your-secret-key'
